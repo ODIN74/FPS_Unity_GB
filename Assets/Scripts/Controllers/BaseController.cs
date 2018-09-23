@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace FPS
 {
-    public abstract class BaseConroller : MonoBehaviour
+    public abstract class BaseController : MonoBehaviour
     {
         public bool IsEnabled { get; private set; }
         public virtual void On()

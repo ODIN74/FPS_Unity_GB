@@ -106,12 +106,21 @@ namespace FPS
             }
         }
 
+        protected Collider _collider;
+
+        public Collider Collider
+        {
+            get { return _collider; }
+        }
+
         protected virtual void Awake()
         {
             _gameobject = GetComponent<GameObject>();
             _rigidbody = GetComponent<Rigidbody>();
             Name = name;
             _layer = gameObject.layer;
+
+            _collider = GetComponent<Collider>();
 
             _renderer = GetComponent<Renderer>();
             if (_renderer)

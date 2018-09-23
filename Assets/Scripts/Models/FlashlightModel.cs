@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,14 +9,9 @@ namespace FPS
     {
         private Light _light;
 
-        [SerializeField] [Tooltip("battery discharge time in seconds")] private int _battery;
+        [SerializeField] [Tooltip("battery discharge time in seconds")] private float _battery = 30.0f;
 
-        private int _currentBattery;
-
-        public float BatteryState
-        {
-            get { return _currentBattery / _battery; }
-        }
+        private float _currentBattery;
 
         public bool IsOn
         {
@@ -34,20 +30,19 @@ namespace FPS
 
         public void On()
         {
-            StopCoroutine(ChargeBattery());
-            if (_currentBattery >= 1)
+            StopAllCoroutines();
+            if(_currentBattery >= 1)
             {
                 _light.enabled = true;
                 StartCoroutine(DischargeBattery());
             }
-            else this.Off();
         }
 
         public void Off()
         {
             _light.enabled = false;
-            StopCoroutine(ChargeBattery());
-            if(_currentBattery <= _battery)
+            StopAllCoroutines();
+            if (_currentBattery < _battery)
             {
                 StartCoroutine(ChargeBattery());
             }
@@ -61,20 +56,32 @@ namespace FPS
                 On();
         }
 
+        public event Action onBatteryDischarge;
+
+        public float BatteryState()
+        {        
+            return _currentBattery / _battery;
+        }
+
         private IEnumerator DischargeBattery()
         {
-            yield return new WaitForSeconds(1);
-            _currentBattery--;
+            do
+            {
+                yield return new WaitForSeconds(1);
+                _currentBattery--;
+            }
+            while (_currentBattery > 0);
+            this.Off();
+            onBatteryDischarge();
         }
 
         private IEnumerator ChargeBattery()
         {
-            if (_currentBattery < _battery)
+                while (_currentBattery < _battery)
             {
                 yield return new WaitForSeconds(1);
                 _currentBattery++;
             }
-            else yield return null;
         }
     }
 }

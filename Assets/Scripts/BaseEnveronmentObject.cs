@@ -17,13 +17,11 @@ namespace FPS
 
         protected virtual void OnCollisionEnter(Collision other) 
         {
-            if(other == _playerCollider)
             onPlayerActionTriggerOn();
         }
 
         protected virtual void OnCollisionExit(Collision other)
         {
-            if (other == _playerCollider)
                 onPlayerActionTriggerOff();
         }
 

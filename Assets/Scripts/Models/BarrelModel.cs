@@ -6,11 +6,11 @@ namespace FPS
 {
     public class BarrelModel : BaseEnveronmentObject
     {
-        [SerializeField] private float force = 10.0f;
+        [SerializeField] private float force = 100.0f;
 
         public override void PlayerAction()
         {
-            _rigidbody.AddForce(Vector3.forward * force, ForceMode.Impulse);
+            _rigidbody.AddForce((transform.position - Player.transform.position) * force, ForceMode.Impulse);
         }
 
     }

@@ -15,20 +15,31 @@ namespace FPS
 
         public delegate void UIMessageForPlayer();
 
+        public bool IsContact { get; private set; }
+
         protected virtual void OnCollisionEnter(Collision other) 
         {
-            onPlayerActionTriggerOn();
+            if (other.gameObject.tag.Equals(Player.tag))
+            {
+                IsContact = true;
+                onPlayerActionTriggerOn();
+            }
         }
 
         protected virtual void OnCollisionExit(Collision other)
         {
+            if (other.gameObject.tag.Equals(Player.tag))
+            {
+                IsContact = false;
                 onPlayerActionTriggerOff();
+            }
         }
 
         protected override void Awake()
         {
             base.Awake();
             _playerCollider = Player.GetComponent<Collider>();
+            IsContact = false;
         }
 
         public event UIMessageForPlayer onPlayerActionTriggerOn;

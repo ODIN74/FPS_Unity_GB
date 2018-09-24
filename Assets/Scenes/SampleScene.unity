@@ -9189,7 +9189,7 @@ Canvas:
   m_GameObject: {fileID: 737896646}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 1146969106}
   m_PlaneDistance: 0.35
   m_PixelPerfect: 1
@@ -9997,7 +9997,7 @@ GameObject:
   - component: {fileID: 883800626}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11794,6 +11794,7 @@ GameObject:
   - component: {fileID: 1283237636}
   - component: {fileID: 1283237635}
   - component: {fileID: 1283237634}
+  - component: {fileID: 1283237637}
   m_Layer: 5
   m_Name: PlayerMessageCanvas
   m_TagString: Untagged
@@ -11865,7 +11866,7 @@ Canvas:
   m_GameObject: {fileID: 1283237632}
   m_Enabled: 0
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 1146969106}
   m_PlaneDistance: 3.5
   m_PixelPerfect: 1
@@ -11877,6 +11878,17 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1283237637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1283237632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6df333cd9989e6b4b851bbe77e5c81f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1289220563
 GameObject:
   m_ObjectHideFlags: 0
@@ -13915,6 +13927,19 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 1768e940ef5fa2d4093cb81fb56533a0, type: 3}
+--- !u!114 &1752940009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1752940002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f677f42753f8a43b3e9b46a444d1b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 883800625}
+  force: 100
 --- !u!1 &1755225716
 GameObject:
   m_ObjectHideFlags: 0
@@ -14552,7 +14577,7 @@ Canvas:
   m_GameObject: {fileID: 1897951099}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 1146969106}
   m_PlaneDistance: 3.5
   m_PixelPerfect: 0
@@ -14688,6 +14713,19 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 1768e940ef5fa2d4093cb81fb56533a0, type: 3}
+--- !u!114 &1941561631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1941561624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f677f42753f8a43b3e9b46a444d1b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 883800625}
+  force: 100
 --- !u!1 &1966452722
 GameObject:
   m_ObjectHideFlags: 0
@@ -15001,7 +15039,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4898458119993624, guid: aff47d0fca1e53244a323dbd82ddc90a, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -8.36
+      value: -4.16
       objectReference: {fileID: 0}
     - target: {fileID: 4898458119993624, guid: aff47d0fca1e53244a323dbd82ddc90a, type: 2}
       propertyPath: m_LocalRotation.x
@@ -15038,6 +15076,10 @@ Prefab:
     - target: {fileID: 1924217154915476, guid: aff47d0fca1e53244a323dbd82ddc90a, type: 2}
       propertyPath: m_Name
       value: barrel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1924217154915476, guid: aff47d0fca1e53244a323dbd82ddc90a, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aff47d0fca1e53244a323dbd82ddc90a, type: 2}

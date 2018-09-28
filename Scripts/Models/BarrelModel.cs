@@ -13,21 +13,19 @@ namespace FPS
         public override void PlayerActionStart()
         {
             _actionActive = true;
-            
         }
 
         public override void PlayerActionStop()
         {
             _actionActive = false;
-            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
         private void Update()
         {
-            if (_actionActive)
+            if(_actionActive)
             {
-                transform.position = _camera.transform.position + _camera.transform.forward* offsetZ + _camera.transform.up * offsetY;
-                transform.rotation = _camera.transform.rotation;
+                var curentPlayerPosition = Player.transform.localPosition;
+                transform.position = curentPlayerPosition + Vector3.forward * offsetZ + Vector3.up * offsetY;
             }
         }
 

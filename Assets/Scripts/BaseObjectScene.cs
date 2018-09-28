@@ -91,20 +91,20 @@ namespace FPS
 
         protected Renderer _renderer;
 
-        protected Color _color;
+        //protected Color _color = Color.clear;
 
-        public Color Color
-        {
-            get
-            {
-                return _color;
-            }
-            set
-            {
-                _color = value;
-                _material.color = _color;
-            }
-        }
+        //public Color Color
+        //{
+        //    get
+        //    {
+        //            return _color;
+        //    }
+        //    set
+        //    {
+        //        _color = value;
+        //        _material.color = _color;
+        //    }
+        //}
 
         protected Collider _collider;
 
@@ -125,8 +125,8 @@ namespace FPS
             _renderer = GetComponent<Renderer>();
             if (_renderer)
                 _material = _renderer.material;
-            if (_material)
-                _color = _material.color;
+            //if (_material)
+            //    _color = _material.color;
         }
 
         private void SetLayers(Transform objTransform, int layer)

@@ -13,6 +13,7 @@ namespace FPS
         public override void PlayerActionStart()
         {
             _actionActive = true;
+            
         }
 
         public override void PlayerActionStop()
@@ -22,10 +23,9 @@ namespace FPS
 
         private void Update()
         {
-            if(_actionActive)
+            if (_actionActive)
             {
-                var curentPlayerPosition = Player.transform.localPosition;
-                transform.position = curentPlayerPosition + Vector3.forward * offsetZ + Vector3.up * offsetY;
+                transform.position = _camera.transform.position + _camera.transform.forward* offsetZ + _camera.transform.up * offsetY;
             }
         }
 

@@ -24097,7 +24097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 883800625}
-  offsetY: -1.8
+  offsetY: -1.5
   offsetZ: 2
   force: 100
 --- !u!1 &1755225716
@@ -24938,7 +24938,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 883800625}
-  offsetY: -1.8
+  offsetY: -1.5
   offsetZ: 2
   force: 100
 --- !u!1 &1966452722

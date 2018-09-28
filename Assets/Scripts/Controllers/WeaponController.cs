@@ -33,5 +33,16 @@ namespace FPS
             if (_weapons.Length > _currentWeapon && _weapons[_currentWeapon])
                 _weapons[_currentWeapon].Fire();
         }
+
+        public void AlternativeFireStart()
+        {
+            if (_weapons.Length > _currentWeapon && _weapons[_currentWeapon] && _weapons[_currentWeapon] is MultiBarreledFirearms)
+                (_weapons[_currentWeapon] as MultiBarreledFirearms).AlternativeFireStart();
+        }
+        public void AlternativeFireStop()
+        {
+            if (_weapons.Length > _currentWeapon && _weapons[_currentWeapon] && _weapons[_currentWeapon] is MultiBarreledFirearms)
+                (_weapons[_currentWeapon] as MultiBarreledFirearms).AlternativeFireStop();
+        }
     }
 }

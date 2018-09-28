@@ -38,15 +38,17 @@ namespace FPS
                 _isHitted = true;
                 transform.position = hit.point;
 
-                _particle.Play();
-
-                Debug.Log(_particle.isPlaying);
+                if(_particle)
+                {
+                    _particle.Play();
+                    Destroy(gameObject, 0.3f);
+                }
+                else
+                    Destroy(gameObject, 10f);
 
                 IDamageable d = hit.collider.GetComponent<IDamageable>();                
                 if (d != null)
                     d.ApplyDamage(_damage);
-
-                Destroy(gameObject, 0.3f);
             }
             else
             {

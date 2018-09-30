@@ -24,6 +24,10 @@ namespace FPS
                 Main.Instance.WeaponController.ChangeWeapon(-1);
             if (Input.GetAxis("Mouse ScrollWheel") > 0)
                 Main.Instance.WeaponController.ChangeWeapon(1);
+            if (Input.GetButtonDown("FollowToPlayer"))
+                Main.Instance.TeammateController.FollowThePlayer();
+            if (Input.GetButtonDown("CommandToTeammate"))
+                Main.Instance.TeammateController.MoveToPosition();
         }
     }
 }

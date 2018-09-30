@@ -14,7 +14,7 @@ namespace FPS
         [SerializeField]
         private float alternativeFireDelay = 5.0f;
 
-        private int _currentFirepoint;
+        private int _currentFirepoint = 0;
 
         private float _lastAltShotTime;
 
@@ -27,8 +27,8 @@ namespace FPS
             if (!TryShoot())
                 return;
             base.Fire();
-            BaseAmmo bullet = Instantiate(_ammoPrefab, _firepoints[_currentFirepoint].position, _firepoints[_currentFirepoint].rotation);
-            bullet.Initialize(_force, targetPoint);
+            BaseAmmo bullet = PoolObjects.Instance.GetObject(_poolID) as BaseAmmo;
+            bullet.Initialize( _force, _firepoints[_currentFirepoint], targetPoint);
 
             _currentFirepoint++;
             if (_currentFirepoint >= _firepoints.Length)
@@ -75,8 +75,8 @@ namespace FPS
 
             foreach (var point in _firepoints)
             {
-                BaseAmmo bullet = Instantiate(_ammoPrefab, point.position, point.rotation);
-                bullet.Initialize(_force, targetPoint);
+                BaseAmmo bullet = PoolObjects.Instance.GetObject(_poolID) as BaseAmmo;
+                bullet.Initialize(_force, point, targetPoint);
             }
             _coroutineStarted = false;
         }

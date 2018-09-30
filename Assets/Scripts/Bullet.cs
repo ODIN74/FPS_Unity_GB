@@ -8,20 +8,36 @@ namespace FPS
     public class Bullet : BaseAmmo
     {
         [SerializeField]
-        private float _destroyTime = 2f;
+        private float _destroyTime = 0.3f;
         [SerializeField]
         private LayerMask _layerMask;
+
+        [SerializeField]
+        private string _poolID = "Bullet01";
+        [SerializeField]
+        private int _bulletsCount = 50;
 
         private bool _isHitted;
         private float _speed;
         private Vector3 _targetPoint;
         private ParticleSystem _particle;
 
-        public override void Initialize(float force, Vector3 targetPoint)
+        public override string PoolID { get { return _poolID; } }
+
+        public override int countOjects { get { return _bulletsCount; } }
+
+        public override void Initialize(float force, Transform firePointTransform, Vector3 targetPoint)
         {
+            transform.position = firePointTransform.position;
+            transform.rotation = firePointTransform.rotation;
+
+            CancelInvoke();
+            _isHitted = false;
             _speed = force;
             _targetPoint = targetPoint;
             _particle = GetComponent<ParticleSystem>();
+            Invoke("DisableInstance", _destroyTime);
+            gameObject.SetActive(true);
         }
 
 
@@ -41,10 +57,10 @@ namespace FPS
                 if(_particle)
                 {
                     _particle.Play();
-                    Destroy(gameObject, 0.3f);
+                    DisableInstance();
                 }
                 else
-                    Destroy(gameObject, 10f);
+                    DisableInstance();
 
                 IDamageable d = hit.collider.GetComponent<IDamageable>();                
                 if (d != null)

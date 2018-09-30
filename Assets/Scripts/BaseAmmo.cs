@@ -4,11 +4,20 @@ using UnityEngine;
 
 namespace FPS
 {
-    public abstract class BaseAmmo : BaseObjectScene
+    public abstract class BaseAmmo : BaseObjectScene, IPoolable
     {
         [SerializeField]
         protected float _damage = 20f;
 
-        public abstract void Initialize(float force, Vector3 targetPoint);
+        public abstract string PoolID { get; }
+
+        public abstract int countOjects { get; }
+
+        public abstract void Initialize(float force, Transform firePointTransform, Vector3 targetPoint);
+
+        public virtual void DisableInstance()
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

@@ -207,6 +207,8 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 512
+  _poolID: Bullet0
+  _bulletsCount: 100
 --- !u!198 &198269289417672678
 ParticleSystem:
   m_ObjectHideFlags: 1

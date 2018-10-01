@@ -8,7 +8,7 @@ namespace FPS
     public abstract class BaseWeapon : BaseObjectScene
     {
         [SerializeField]
-        protected BaseAmmo _ammoPrefab;
+        protected string _poolID;
         [SerializeField]
         protected float _force;
         [SerializeField]

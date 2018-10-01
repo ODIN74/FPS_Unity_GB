@@ -26,8 +26,8 @@ namespace FPS
                 return;
             base.Fire();
             _particle.Play();
-            BaseAmmo bullet = Instantiate(_ammoPrefab, _firepoint.position, _firepoint.rotation);
-            bullet.Initialize(_force, targetPoint);
+            BaseAmmo bullet = PoolObjects.Instance.GetObject(_poolID) as BaseAmmo;
+            bullet.Initialize(_force, _firepoint, targetPoint);
         }        
 
         public override void Reload()

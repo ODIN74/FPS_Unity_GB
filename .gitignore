@@ -7,6 +7,8 @@
 */bin
 */obj
 */publish
+*/Library
+*/Builds
 */etc
 */Packages
 $tf
@@ -15,15 +17,13 @@ TestResults
 !*.csproj
 !*/*.csproj
 [Ll]ibrary/
+Builds/
 [Tt]emp/
 [Oo]bj/
 QCAR/
 UnityPackageManager/
 Assets/IGNORED
 Assets/IGNORED.meta
-[Aa]ssets/
-[Pp]ackages/
-[Pp]rojectSettings/
 
 # VS2013
 

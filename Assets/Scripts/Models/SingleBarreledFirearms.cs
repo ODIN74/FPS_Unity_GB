@@ -10,12 +10,9 @@ namespace FPS
         [SerializeField]
         private Transform _firepoint;
 
-        private ParticleSystem _particle;
-
         protected override void Awake()
         {
             base.Awake();
-            _particle = GetComponentInChildren<ParticleSystem>();
             if (_particle != null && _particle.isPlaying)
                 _particle.Stop();
         }
@@ -25,7 +22,7 @@ namespace FPS
             if (!TryShoot())
                 return;
             base.Fire();
-            _particle.Play();
+            
             BaseAmmo bullet = PoolObjects.Instance.GetObject(_poolID) as BaseAmmo;
             bullet.Initialize(_force, _firepoint, targetPoint);
         }        

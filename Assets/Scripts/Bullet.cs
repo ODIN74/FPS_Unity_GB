@@ -35,7 +35,7 @@ namespace FPS
             _isHitted = false;
             _speed = force;
             _targetPoint = targetPoint;
-            _particle = GetComponent<ParticleSystem>();
+            _particle = GetComponentInParent<ParticleSystem>();
             Invoke("DisableInstance", _destroyTime);
             gameObject.SetActive(true);
         }

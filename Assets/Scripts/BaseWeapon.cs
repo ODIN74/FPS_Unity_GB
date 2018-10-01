@@ -22,10 +22,15 @@ namespace FPS
         private Camera _mainCamera;
         protected Vector3 targetPoint;
 
+        protected Animator _anim;
+        protected ParticleSystem _particle;
+
         protected override void Awake()
         {
             base.Awake();
             _mainCamera = Camera.main;
+            _particle = GetComponentInChildren<ParticleSystem>();
+            _anim = GetComponent<Animator>();
         }
 
         public virtual void Fire()
@@ -35,6 +40,10 @@ namespace FPS
             RaycastHit hit;
             Physics.Raycast(ray, out hit);
             targetPoint = hit.point;
+            if (_particle != null)
+                _particle.Play();
+            if (_anim != null)
+                _anim.SetTrigger("Fire");
         }
 
         protected bool TryShoot()

@@ -45,7 +45,11 @@ namespace FPS
             }
             else
             {
-                _teammate.Move(Vector3.zero, false, false);
+                if (positionQueue.Count != 0)
+                    _agent.SetDestination(positionQueue.Dequeue());
+                else
+                    _teammate.Move(Vector3.zero, false, false);
+                
             }
         }
 
@@ -56,17 +60,17 @@ namespace FPS
 
         public void SetDesination(Vector3 position)
         {
-            positionQueue.Enqueue(position);
-
-            Debug.Log(positionQueue.Count);
-
-            if (_agent.remainingDistance < 0.5f)
+            if (_followPlayer)
+                SwitchFollow();
+            if (_agent.hasPath)
             {
-                var nextPosition = positionQueue.Dequeue();
+                positionQueue.Enqueue(position);
+            }
+            else
+            {
                 NavMeshHit hit;
-                if (NavMesh.SamplePosition(nextPosition, out hit, maxDistance, -1))
+                if (NavMesh.SamplePosition(position, out hit, maxDistance, -1))
                 {
-                    SwitchFollow();
                     _agent.SetDestination(hit.position);
                     Debug.Log(positionQueue.Count);
                 }
@@ -75,6 +79,7 @@ namespace FPS
                     Debug.Log("Unreachable position");
                 }
             }
+                
         }
     }
 }

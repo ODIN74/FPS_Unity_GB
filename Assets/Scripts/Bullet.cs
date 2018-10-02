@@ -49,22 +49,29 @@ namespace FPS
 
             Vector3 finalPos = transform.position + (_targetPoint - transform.position).normalized * _speed * Time.fixedDeltaTime;
             RaycastHit hit;
-            if (Physics.Linecast(transform.position, finalPos, out hit, _layerMask))
+            if (Physics.Linecast(transform.position, finalPos, out hit))
             {
-                _isHitted = true;
-                transform.position = hit.point;
-
-                if(_particle)
+                if ((1 << hit.collider.gameObject.layer) == _layerMask)
                 {
-                    _particle.Play();
-                    DisableInstance();
-                }
-                else
-                    DisableInstance();
+                    _isHitted = true;
+                    transform.position = hit.point;
+
+                    if (_particle)
+                    {
+                        _particle.Play();
+                        DisableInstance();
+                    }
+                    else
+                        DisableInstance();
+                } 
 
                 IDamageable d = hit.collider.GetComponent<IDamageable>();                
                 if (d != null)
+                {
+                    transform.position = hit.point;
                     d.ApplyDamage(_damage);
+                    DisableInstance();
+                }
             }
             else
             {

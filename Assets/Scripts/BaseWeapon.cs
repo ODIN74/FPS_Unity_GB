@@ -51,11 +51,12 @@ namespace FPS
 
             if (Time.time - _lastShotTime < _timeout)
                 return false;
-
+            if (_anim != null && _anim.GetCurrentAnimatorStateInfo(0).IsName("Recharge"))
+                return false;
             _lastShotTime = Time.time;
             return true;
         }
 
-        public abstract void Reload();
+        public abstract void Recharge();
     }
 }

@@ -44,5 +44,11 @@ namespace FPS
             if (_weapons.Length > _currentWeapon && _weapons[_currentWeapon] && _weapons[_currentWeapon] is MultiBarreledFirearms)
                 (_weapons[_currentWeapon] as MultiBarreledFirearms).AlternativeFireStop();
         }
+
+        public void Recharge()
+        {
+            if (_weapons[_currentWeapon] is SingleBarreledFirearms)
+                _weapons[_currentWeapon].Recharge();
+        }
     }
 }

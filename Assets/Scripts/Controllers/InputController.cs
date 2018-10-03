@@ -28,6 +28,8 @@ namespace FPS
                 Main.Instance.TeammateController.FollowThePlayer();
             if (Input.GetButtonDown("CommandToTeammate"))
                 Main.Instance.TeammateController.MoveToPosition();
+            if (Input.GetButtonDown("Recharge"))
+                Main.Instance.WeaponController.Recharge();
         }
     }
 }

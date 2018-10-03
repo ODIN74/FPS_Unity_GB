@@ -55,7 +55,7 @@ namespace FPS
                 OnAlternativeFire(energy);
         }
 
-        public override void Reload()
+        public override void Recharge()
         {
             //Реализуем в ДЗ
         }

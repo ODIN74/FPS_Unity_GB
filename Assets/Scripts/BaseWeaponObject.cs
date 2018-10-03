@@ -22,6 +22,7 @@ namespace FPS
         {
             base.Awake();
             _particle = GetComponent<ParticleSystem>();
+
             if (_particle != null)
                 _particle.Stop();
         }

@@ -13,7 +13,6 @@ namespace FPS
         protected float _force;
         [SerializeField]
         protected float _reloadTime;
-        private float _reloadTimer;
 
         [SerializeField]
         protected float _timeout;

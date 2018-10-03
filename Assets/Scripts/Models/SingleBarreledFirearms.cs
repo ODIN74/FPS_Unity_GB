@@ -17,8 +17,10 @@ namespace FPS
         private int _numberBulletsInClip = 30;
 
         private int _currentNumberOfBulletsInClip = 0;
+        public int CurrentNumberOfBulletsInClip { get { return _currentNumberOfBulletsInClip; } }
 
         private int _currentNumberOfBullets = 0;
+        public int CurrentNumberOfBullets { get { return _currentNumberOfBullets; } }
 
         private bool _rechargeFlag = false;
 
@@ -36,7 +38,8 @@ namespace FPS
         {
             if (_anim != null)
                 _anim.SetInteger("numberBullets", _currentNumberOfBulletsInClip);
-            if (_currentNumberOfBulletsInClip == 0 && !_rechargeFlag &&  _currentNumberOfBullets != 0)
+
+            if (_currentNumberOfBulletsInClip == 0 && !_rechargeFlag && _currentNumberOfBullets != 0 && !_anim.GetCurrentAnimatorStateInfo(0).IsName("Recharge"))
             {
                 _anim.SetTrigger("Recharge");
                 _rechargeFlag = true;
@@ -49,37 +52,49 @@ namespace FPS
             if (!TryShoot())
                 return;
             base.Fire();
-            
+
             BaseAmmo bullet = PoolObjects.Instance.GetObject(_poolID) as BaseAmmo;
             bullet.Initialize(_force, _firepoint, targetPoint);
-            if(_currentNumberOfBulletsInClip > 0)
-             _currentNumberOfBulletsInClip--;
+            if (_currentNumberOfBulletsInClip > 0)
+                _currentNumberOfBulletsInClip--;
         }
 
         public override void Recharge()
         {
-            if(_currentNumberOfBulletsInClip != 0)
+            if (_currentNumberOfBulletsInClip != 0)
             {
-                _currentNumberOfBullets -= (_numberBulletsInClip - _currentNumberOfBulletsInClip);
-                _currentNumberOfBulletsInClip = _numberBulletsInClip;
                 if (_anim != null)
-                    _anim.Play("Recharge");
+                    _anim.SetTrigger("Recharge");
+                StartCoroutine(RechargeDelay());
             }
             else
             {
-                if (_currentNumberOfBullets <= _numberBulletsInClip)
-                {
-                    _currentNumberOfBulletsInClip = _currentNumberOfBullets;
-                    _currentNumberOfBullets = 0;
-                }
-                else
-                {
-                    _currentNumberOfBulletsInClip = _numberBulletsInClip;
-                    _currentNumberOfBullets -= _numberBulletsInClip;
-                }
-            } 
+                StartCoroutine(RechargeDelay());
+            }
             Debug.Log(_currentNumberOfBullets);
             _rechargeFlag = false;
+        }
+
+        IEnumerator RechargeDelay()
+        {
+            yield return new WaitForSeconds(_reloadTime);
+            if (_currentNumberOfBulletsInClip != 0)
+            {
+                _currentNumberOfBullets -= (_numberBulletsInClip - _currentNumberOfBulletsInClip);
+                _currentNumberOfBulletsInClip = _numberBulletsInClip;
+            }
+            else if (_currentNumberOfBullets <= _numberBulletsInClip)
+            {
+                _currentNumberOfBulletsInClip = _currentNumberOfBullets;
+                _currentNumberOfBullets = 0;
+            }
+            else
+            {
+                _currentNumberOfBulletsInClip = _numberBulletsInClip;
+                _currentNumberOfBullets -= _numberBulletsInClip;
+            }
+            _anim.ResetTrigger("Recharge");
+            StopCoroutine(RechargeDelay());
         }
     }
 }

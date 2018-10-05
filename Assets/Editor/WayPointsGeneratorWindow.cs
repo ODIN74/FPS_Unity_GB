@@ -37,7 +37,6 @@ namespace WayPointsGenerator
 
         public void OnEnable()
         {
-            
         }
 
         private void OnGUI()
@@ -71,11 +70,6 @@ namespace WayPointsGenerator
                 }
                 else
                     GenerateWayPoints();
-
-                foreach (var obj in _wayPoints)
-                {
-                    EditorGUILayout.TextField(obj.ToString());
-                }
             }                
         }
 

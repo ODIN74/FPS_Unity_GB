@@ -9,11 +9,26 @@ namespace FPS
 {
     public class EnemyBot : BaseObjectScene, IDamageable
     {
-        [SerializeField]
-        private float timeFromStandToIdle = 1.0f;
 
-        [SerializeField]
+        private float timeFromStandToIdle = 1.0f;
+        public float TimeFromStandToIdle
+        {
+            get { return timeFromStandToIdle; }
+            private set
+            {
+                timeFromStandToIdle = value;
+            }
+        }
+
         private float destroyDelay = 1.0f;
+        public float DestroyDelay
+        {
+            get { return destroyDelay; }
+            private set
+            {
+                destroyDelay = value;
+            }
+        }
 
         [SerializeField]
         private bool enableRandomPosition = true;
@@ -30,8 +45,15 @@ namespace FPS
         [SerializeField]
         private float _attackDistance = 3f;
 
-        [SerializeField]
         private float _damageDelay = 1f;
+        public float DamageDelay
+        {
+            get { return _damageDelay; }
+            private set
+            {
+                _damageDelay = value;
+            }
+        }
 
         [SerializeField]
         private int _damage = 10;
@@ -237,7 +259,22 @@ namespace FPS
         {
             _anim.SetTrigger("Death");
             Destroy(gameObject, destroyDelay);
-        } 
+        }
+
+        public void SetTimeFromStandToIdle(float time)
+        {
+            timeFromStandToIdle = time;
+        }
+
+        public void SetDestroyDelay(float time)
+        {
+            destroyDelay = time;
+        }
+
+        public void SetDamageDelay(float time)
+        {
+            _damageDelay = time;
+        }
     }
 
 }

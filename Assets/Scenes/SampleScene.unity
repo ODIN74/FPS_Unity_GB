@@ -7305,8 +7305,8 @@ MonoBehaviour:
   _reloadTime: 2
   _timeout: 0.25
   _firepoint: {fileID: 1034282852}
-  _maxCountOfBullets: 0
-  _numberBulletsInClip: 0
+  _maxCountOfBullets: 300
+  _numberBulletsInClip: 40
 --- !u!95 &288888225
 Animator:
   serializedVersion: 3
@@ -17368,8 +17368,8 @@ MonoBehaviour:
   _reloadTime: 2
   _timeout: 0.15
   _firepoint: {fileID: 1034282852}
-  _maxCountOfBullets: 0
-  _numberBulletsInClip: 0
+  _maxCountOfBullets: 200
+  _numberBulletsInClip: 30
 --- !u!95 &757456258
 Animator:
   serializedVersion: 3
@@ -17526,8 +17526,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aadb94b4d47e79449b836d20774b2d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeFromStandToIdle: 3
-  destroyDelay: 4
   enableRandomPosition: 0
   patrolDistance: 5
   _wayPoints:
@@ -17537,7 +17535,6 @@ MonoBehaviour:
   - {fileID: 154830746}
   _seekDistance: 10
   _attackDistance: 3
-  _damageDelay: 1
   _damage: 10
   maxHealth: 100
 --- !u!136 &772667589
@@ -31592,7 +31589,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1243314622313720, guid: 07952b64868564b4caf97151491ee8db, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07952b64868564b4caf97151491ee8db, type: 2}
@@ -33469,6 +33466,22 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2013405150}
   m_CullTransparentMesh: 0
+--- !u!1 &2016809706 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1243314622313720, guid: 07952b64868564b4caf97151491ee8db,
+    type: 2}
+  m_PrefabInternal: {fileID: 1696299414}
+--- !u!114 &2016809707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2016809706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56884ac84c8155849a9008a048ae3534, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2016952279
 GameObject:
   m_ObjectHideFlags: 0

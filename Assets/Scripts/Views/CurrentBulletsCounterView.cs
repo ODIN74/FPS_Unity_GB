@@ -17,8 +17,8 @@ namespace FPS
         private void Start()
         {
             _text.text = string.Format("{0} / {1}",
-                (Main.Instance.WeaponController.CurrentWeapon as SingleBarreledFirearms).CurrentNumberOfBullets,
-                (Main.Instance.WeaponController.CurrentWeapon as SingleBarreledFirearms).CurrentNumberOfBulletsInClip);
+                (Main.Instance.WeaponController.CurrentWeapon as SingleBarreledFirearms)?.CurrentNumberOfBullets,
+                (Main.Instance.WeaponController.CurrentWeapon as SingleBarreledFirearms)?.CurrentNumberOfBulletsInClip);
         }
 
         private void Update()

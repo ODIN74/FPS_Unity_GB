@@ -6,12 +6,43 @@ namespace FPS
 {
     public class TestData : MonoBehaviour
     {
-        private IDataProvider _dataProvider;
+        private DataManager _dataManager;
+
+        public enum DataProviders
+        {
+            BINARY,
+            ENCRIPTEDTXT,
+            JSON,
+            XML,
+            PLAYER_PREFS
+        }
+
+        [SerializeField]
+        private DataProviders _provider;
         
         // Use this for initialization
         void Start()
         {
-            _dataProvider = new EncryptedData();
+            _dataManager = new DataManager();
+            switch (_provider)
+            {
+                case DataProviders.BINARY:
+                    _dataManager.SetData<BinaryData>();
+                    break;
+                case DataProviders.ENCRIPTEDTXT:
+                    _dataManager.SetData<EncryptedData>();
+                    break;
+                case DataProviders.JSON:
+                    _dataManager.SetData<JSONData>();
+                    break;
+                case DataProviders.XML:
+                    _dataManager.SetData<XMLData>();
+                    break;
+                case DataProviders.PLAYER_PREFS:
+                    _dataManager.SetData<PlayerPrefsData>();
+                    break;
+            }
+
             var path = Application.dataPath;
             var player = new PlayerData()
             {
@@ -21,13 +52,13 @@ namespace FPS
                 IsVisible = true
             };
 
-            if (_dataProvider == null)
+            if (_dataManager == null)
                 return;
             
-            _dataProvider.SetOption(path);
-            _dataProvider.Save(player);
+            _dataManager.SetOption(path);
+            _dataManager.Save(player);
 
-            var playerLoaded = _dataProvider.Load();
+            var playerLoaded = _dataManager.Load();
 
             Debug.Log(playerLoaded);
         }

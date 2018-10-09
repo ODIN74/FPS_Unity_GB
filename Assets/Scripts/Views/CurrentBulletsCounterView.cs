@@ -14,13 +14,6 @@ namespace FPS
             _text = GetComponent<Text>();
         }
 
-        private void Start()
-        {
-            _text.text = string.Format("{0} / {1}",
-                (Main.Instance.WeaponController.CurrentWeapon as SingleBarreledFirearms)?.CurrentNumberOfBullets,
-                (Main.Instance.WeaponController.CurrentWeapon as SingleBarreledFirearms)?.CurrentNumberOfBulletsInClip);
-        }
-
         private void Update()
         {
             _text.text = string.Format("{0} / {1}",

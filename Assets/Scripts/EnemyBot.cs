@@ -203,7 +203,6 @@ namespace FPS
 
         private bool IsTargetVisible()
         {
-            RaycastHit hit;
             if (Physics.Linecast(_eyesTransform.position, _targetTransform.position, PlayerModel.LocalPlayer.Layer))
             {
                 return true;

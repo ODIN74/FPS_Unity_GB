@@ -44,7 +44,6 @@ namespace FPS
                 else
                 {
                     _gameObjsForLoad[i] = GameObject.Instantiate(Resources.Load<GameObject>(_medicalKitPrefabName));
-                    Debug.Log(_gameObjsForLoad[i].transform.rotation);
                 }  
             }
 

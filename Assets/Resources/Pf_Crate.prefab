@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2300000}
   - component: {fileID: 65895000645804404}
   - component: {fileID: 54429689828661886}
+  - component: {fileID: 114063943547786402}
   m_Layer: 0
   m_Name: Pf_Crate
   m_TagString: Untagged
@@ -112,3 +113,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1471328, y: 1.0351151, z: 1.1471328}
   m_Center: {x: 0.0007307529, y: -0.0009000301, z: 0}
+--- !u!114 &114063943547786402
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03b5c7eaff0761f45acf303c03a08a0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawbleImage: {fileID: 114514803531613246, guid: c8aa5a6a43c04984ba91561f3f66ae01,
+    type: 2}
+  offsetY: 2

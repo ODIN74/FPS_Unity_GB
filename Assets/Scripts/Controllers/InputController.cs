@@ -11,9 +11,15 @@ namespace FPS
             if (Input.GetButtonDown("Flashlight Switch"))
                 Main.Instance.FlashlightController.Switch();
             if (Input.GetButtonDown("Player Action"))
-                Main.Instance.BarrelController.PlayerActionStart();
+                foreach (var obj in Main.Instance.EnveronmentController)
+                {
+                    obj.PlayerActionStart();
+                }
             if (Input.GetButtonUp("Player Action"))
-                Main.Instance.BarrelController.PlayerActionStop();
+                foreach (var obj in Main.Instance.EnveronmentController)
+                {
+                    obj.PlayerActionStop();
+                }
             if (Input.GetButton("Fire1"))
                 Main.Instance.WeaponController.Fire();
             if (Input.GetButton("Fire2"))

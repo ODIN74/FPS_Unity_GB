@@ -4,18 +4,20 @@ using UnityEngine;
 
 namespace FPS
 {
-    public class BarrelController : BaseEnveronmentController
-    {
-        private BarrelModel[] _model;
-        private BarrelView _view;
 
-        private BarrelModel _objectInAction;
+    public class DoorController : BaseEnveronmentController
+    {
+        private Door[] _doors;
+
+        private DoorView _view;
+
+        private Door _objectInAction;
 
         private void Start()
         {
-            _model = FindObjectsOfType<BarrelModel>();
-            _view = FindObjectOfType<BarrelView>();
-            foreach (var obj in _model)
+            _doors = FindObjectsOfType<Door>();
+            _view = FindObjectOfType<DoorView>();
+            foreach (var obj in _doors)
             {
                 obj.onPlayerActionTriggerOn += _view.Enable;
                 obj.onPlayerActionTriggerOff += _view.Disable;
@@ -25,7 +27,7 @@ namespace FPS
 
         public override void PlayerActionStart()
         {
-            foreach(var obj in _model)
+            foreach (var obj in _doors)
             {
                 if (obj.IsContact)
                 {

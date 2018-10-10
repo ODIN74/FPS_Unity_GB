@@ -10,9 +10,10 @@ namespace FPS
 
         public InputController InputController { get; private set; }
         public FlashlightController FlashlightController { get; private set; }
-        public BarrelController BarrelController { get; private set; }
+        public List<BaseEnveronmentController> EnveronmentController { get; private set; } = new List<BaseEnveronmentController>();
         public WeaponController WeaponController { get; private set; }
         public TeammateController TeammateController { get; private set; }
+        public DoorController DoorController { get; private set; }
 
         private void Awake()
         {
@@ -26,9 +27,10 @@ namespace FPS
         {
             InputController = gameObject.AddComponent<InputController>();
             FlashlightController = gameObject.AddComponent<FlashlightController>();
-            BarrelController = gameObject.AddComponent<BarrelController>();
+            EnveronmentController.Add(gameObject.AddComponent<BarrelController>() as BaseEnveronmentController);
             WeaponController = gameObject.AddComponent<WeaponController>();
             TeammateController = gameObject.AddComponent<TeammateController>();
+            EnveronmentController.Add(gameObject.AddComponent<DoorController>() as BaseEnveronmentController);
         }
     }
 }

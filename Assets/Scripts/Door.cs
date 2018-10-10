@@ -14,18 +14,21 @@ namespace FPS
             base.Awake();
             _doorHJ = gameObject.GetComponent<HingeJoint>();
             _doorRB = gameObject.GetComponent<Rigidbody>();
-            _doorRB.freezeRotation = true;
+            _doorRB.constraints = RigidbodyConstraints.FreezeAll;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
-            if (!_doorHJ.useMotor)
+            if (transform.localRotation.eulerAngles.z >= 89)
+            {
                 _doorHJ.useMotor = false;
+                _doorRB.constraints = RigidbodyConstraints.FreezeAll;
+            }
         }
 
         public override void PlayerActionStart()
         {
-            _doorRB.freezeRotation = false;
+            _doorRB.constraints = RigidbodyConstraints.None;
             _doorHJ.useMotor = true;
         }
 

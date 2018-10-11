@@ -16695,13 +16695,27 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1239602947}
+  - component: {fileID: 640420634}
   m_Layer: 0
   m_Name: Flashlight
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!136 &640420634
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 640420633}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.02
+  m_Height: 0.4
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.15, z: 0}
 --- !u!1 &652139724
 GameObject:
   m_ObjectHideFlags: 0
@@ -17897,6 +17911,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aadb94b4d47e79449b836d20774b2d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeFromStandToIdle: 3
+  destroyDelay: 5
   enableRandomPosition: 0
   patrolDistance: 5
   _wayPoints:
@@ -17905,7 +17921,8 @@ MonoBehaviour:
   - {fileID: 927624631}
   - {fileID: 154830746}
   _seekDistance: 10
-  _attackDistance: 3
+  _attackDistance: 2
+  _damageDelay: 2
   _damage: 10
   maxHealth: 100
 --- !u!136 &772667589
@@ -24616,9 +24633,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1548749212}
+  - component: {fileID: 1548749213}
   m_Layer: 0
   m_Name: Weapons
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24642,6 +24660,19 @@ Transform:
   m_Father: {fileID: 1146969102}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1548749213
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1548749211}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.08
+  m_Height: 1
+  m_Direction: 2
+  m_Center: {x: 0, y: -0.12, z: 0.7}
 --- !u!1001 &1574345619
 Prefab:
   m_ObjectHideFlags: 0

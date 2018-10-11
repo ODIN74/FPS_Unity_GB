@@ -5,7 +5,7 @@ using UnityEditor;
 using FPS;
 
 
-    [CustomEditor(typeof(EnemyBot))]
+    //[CustomEditor(typeof(EnemyBot))]
 
     public class EnemyBotEditor : Editor
     {
@@ -14,7 +14,14 @@ using FPS;
         private float _timeFromStandToIdle;
         private float _damageDelay;
         private float _destroyDelay;
-    
+
+    private void Awake()
+    {
+        EnemyBot _eBot = (EnemyBot)target;
+        _timeFromStandToIdle = _eBot.TimeFromStandToIdle;
+        _damageDelay = _eBot.DamageDelay;
+        _destroyDelay = _eBot.DestroyDelay;
+    }
 
     public override void OnInspectorGUI()
         {

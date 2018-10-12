@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 65186727694382034}
   - component: {fileID: 54904735554802566}
   - component: {fileID: 114713715009523444}
+  - component: {fileID: 114948009258438456}
   m_Layer: 0
   m_Name: mediMy
   m_TagString: Untagged
@@ -111,8 +112,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.098182, y: 0.5885681, z: 0.7946362}
-  m_Center: {x: 0.004924983, y: 0.08068303, z: 0.3950611}
+  m_Size: {x: 1.2, y: 0.8, z: 1.2}
+  m_Center: {x: 0, y: 0, z: 0.6}
 --- !u!114 &114713715009523444
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -127,3 +128,18 @@ MonoBehaviour:
   drawbleImage: {fileID: 114514803531613246, guid: c8aa5a6a43c04984ba91561f3f66ae01,
     type: 2}
   offsetY: 2
+--- !u!114 &114948009258438456
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1288474324679276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbb74c163b437bd42a4916aad830bd50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  offsetY: 0.5
+  offsetZ: 0.5
+  recoverableAmount: 10

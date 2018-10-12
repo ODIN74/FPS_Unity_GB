@@ -75,6 +75,13 @@ namespace FPS
             _rechargeFlag = false;
         }
 
+        public override void BulletRecovery(int recoverableBullets)
+        {
+            if (_currentNumberOfBullets + _currentNumberOfBulletsInClip == _maxCountOfBullets)
+                return;
+            _currentNumberOfBullets = Mathf.Clamp(_currentNumberOfBullets + recoverableBullets, _currentNumberOfBullets, _maxCountOfBullets - _currentNumberOfBulletsInClip);
+        }
+
         IEnumerator RechargeDelay()
         {
             yield return new WaitForSeconds(_reloadTime);

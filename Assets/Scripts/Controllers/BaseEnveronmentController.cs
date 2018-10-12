@@ -7,7 +7,9 @@ namespace FPS
     public abstract class BaseEnveronmentController: MonoBehaviour {
 
         public abstract void PlayerActionStart();
-        public abstract void PlayerActionStop();
+        public virtual void PlayerActionStop()
+        {
+        }
     }
 }
 

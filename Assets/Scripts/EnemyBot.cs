@@ -289,9 +289,7 @@ namespace FPS
 
         private IEnumerator FromStandToIdleDelay(float timeFromStandToIdle)
         {
-            Debug.Log(Time.time + " " + timeFromStandToIdle);
             yield return new WaitForSeconds(timeFromStandToIdle);
-            Debug.Log(Time.time + " " + timeFromStandToIdle);
             if(_currentVelocity >= 0.1f)
                 StopCoroutine("FromStandToIdleDelay");
             else

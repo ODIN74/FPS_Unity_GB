@@ -7,20 +7,19 @@ namespace FPS
     public class BarrelController : BaseEnveronmentController
     {
         private BarrelModel[] _model;
-        private BarrelView _view;
+        private PlayerActionView _view;
 
         private BarrelModel _objectInAction;
 
         private void Start()
         {
             _model = FindObjectsOfType<BarrelModel>();
-            _view = FindObjectOfType<BarrelView>();
+            _view = FindObjectOfType<PlayerActionView>();
             foreach (var obj in _model)
             {
                 obj.onPlayerActionTriggerOn += _view.Enable;
                 obj.onPlayerActionTriggerOff += _view.Disable;
             }
-
         }
 
         public override void PlayerActionStart()
@@ -39,6 +38,12 @@ namespace FPS
         {
             if(_objectInAction)
                 _objectInAction.PlayerActionStop();
+        }
+
+        private void OnDestroy()
+        {
+            _objectInAction.onPlayerActionTriggerOn -= _view.Enable;
+            _objectInAction.onPlayerActionTriggerOff -= _view.Disable;
         }
     }
 }

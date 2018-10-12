@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace FPS
 {
-    public class BarrelView : MonoBehaviour
+    public class PlayerActionView : MonoBehaviour
     {
         private Canvas _canvas;
 

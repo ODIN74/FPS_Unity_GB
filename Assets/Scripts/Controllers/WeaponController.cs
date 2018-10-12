@@ -18,18 +18,24 @@ namespace FPS
             for (int i = 0; i < _weapons.Length; i++)
                 _weapons[i].IsVisible = i == 0;
             CurrentWeapon = _weapons[0];
+                Main.Instance.AmmoCrateController.SubscribeEvent(CurrentWeapon);
         }
 
         public void ChangeWeapon(int i)
         {
+            Main.Instance.AmmoCrateController.UnsubscribeEvent(CurrentWeapon);
             _weapons[_currentWeapon].IsVisible = false;
             _currentWeapon += i;
             if (_currentWeapon >= _weapons.Length)
+            {
                 _currentWeapon = 0;
+            }
+
             if (_currentWeapon < 0)
                 _currentWeapon = _weapons.Length - 1;
             _weapons[_currentWeapon].IsVisible = true;
             CurrentWeapon = _weapons[_currentWeapon];
+            Main.Instance.AmmoCrateController.SubscribeEvent(CurrentWeapon);
         }
 
         public void Fire()

@@ -11,9 +11,12 @@ namespace FPS
         public InputController InputController { get; private set; }
         public FlashlightController FlashlightController { get; private set; }
         public List<BaseEnveronmentController> EnveronmentController { get; private set; } = new List<BaseEnveronmentController>();
+        public BarrelController BarrelController { get; private set; }
         public WeaponController WeaponController { get; private set; }
         public TeammateController TeammateController { get; private set; }
         public DoorController DoorController { get; private set; }
+        public MedicalKitController MedicalKitController { get; private set; }
+        public AmmoCrateController AmmoCrateController { get; private set; } 
 
         private void Awake()
         {
@@ -27,10 +30,12 @@ namespace FPS
         {
             InputController = gameObject.AddComponent<InputController>();
             FlashlightController = gameObject.AddComponent<FlashlightController>();
-            EnveronmentController.Add(gameObject.AddComponent<BarrelController>() as BaseEnveronmentController);
+            EnveronmentController.Add((BarrelController = gameObject.AddComponent<BarrelController>()) as BaseEnveronmentController);
             WeaponController = gameObject.AddComponent<WeaponController>();
             TeammateController = gameObject.AddComponent<TeammateController>();
-            EnveronmentController.Add(gameObject.AddComponent<DoorController>() as BaseEnveronmentController);
+            EnveronmentController.Add((DoorController = gameObject.AddComponent<DoorController>()) as BaseEnveronmentController);
+            EnveronmentController.Add((MedicalKitController = gameObject.AddComponent<MedicalKitController>()) as BaseEnveronmentController);
+            EnveronmentController.Add((AmmoCrateController = gameObject .AddComponent<AmmoCrateController>()) as BaseEnveronmentController);
         }
     }
 }

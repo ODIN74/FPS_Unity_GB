@@ -4,30 +4,28 @@ using UnityEngine;
 
 namespace FPS
 {
-
-    public class DoorController : BaseEnveronmentController
+    public class AmmoCrateController : BaseEnveronmentController
     {
-        private Door[] _doors;
+        private AmmoCrateModel[] _crates;
 
         private PlayerActionView _view;
 
-        private Door _objectInAction;
+        private AmmoCrateModel _objectInAction;
 
         private void Start()
         {
-            _doors = FindObjectsOfType<Door>();
+            _crates = FindObjectsOfType<AmmoCrateModel>();
             _view = FindObjectOfType<PlayerActionView>();
-            foreach (var obj in _doors)
+            foreach (var obj in _crates)
             {
                 obj.onPlayerActionTriggerOn += _view.Enable;
                 obj.onPlayerActionTriggerOff += _view.Disable;
             }
-
         }
 
         public override void PlayerActionStart()
         {
-            foreach (var obj in _doors)
+            foreach (var obj in _crates)
             {
                 if (obj.IsContact)
                 {
@@ -36,6 +34,22 @@ namespace FPS
                     _objectInAction.onPlayerActionTriggerOn -= _view.Enable;
                     _objectInAction.onPlayerActionTriggerOff -= _view.Disable;
                 }
+            }
+        }
+
+        public void SubscribeEvent(BaseWeapon subscriber)
+        {
+            foreach(var obj in _crates)
+            {
+                obj.BulletsRecovery += subscriber.BulletRecovery;
+            }
+        }
+
+        public void UnsubscribeEvent(BaseWeapon subscriber)
+        {
+            foreach (var obj in _crates)
+            {
+                obj.BulletsRecovery -= subscriber.BulletRecovery;
             }
         }
     }

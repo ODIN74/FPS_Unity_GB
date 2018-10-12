@@ -35,7 +35,6 @@ namespace FPS
         public override void PlayerActionStop()
         {
         }
-
     }
 }
 

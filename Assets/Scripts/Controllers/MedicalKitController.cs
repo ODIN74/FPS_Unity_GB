@@ -4,30 +4,28 @@ using UnityEngine;
 
 namespace FPS
 {
-
-    public class DoorController : BaseEnveronmentController
+    public class MedicalKitController : BaseEnveronmentController
     {
-        private Door[] _doors;
+        private MedicalKitModel[] _medikalKits;
 
         private PlayerActionView _view;
 
-        private Door _objectInAction;
+        private MedicalKitModel _objectInAction;
 
         private void Start()
         {
-            _doors = FindObjectsOfType<Door>();
+            _medikalKits = FindObjectsOfType<MedicalKitModel>();
             _view = FindObjectOfType<PlayerActionView>();
-            foreach (var obj in _doors)
+            foreach (var obj in _medikalKits)
             {
                 obj.onPlayerActionTriggerOn += _view.Enable;
                 obj.onPlayerActionTriggerOff += _view.Disable;
             }
-
         }
 
         public override void PlayerActionStart()
         {
-            foreach (var obj in _doors)
+            foreach (var obj in _medikalKits)
             {
                 if (obj.IsContact)
                 {
@@ -36,6 +34,22 @@ namespace FPS
                     _objectInAction.onPlayerActionTriggerOn -= _view.Enable;
                     _objectInAction.onPlayerActionTriggerOff -= _view.Disable;
                 }
+            }
+        }
+
+        public void SubscribeEvent(PlayerModel subscriber)
+        {
+            foreach (var obj in _medikalKits)
+            {
+                obj.HealthRecovery += subscriber.Healing;
+            }
+        }
+
+        public void UnsubscribeEvent(PlayerModel subscriber)
+        {
+            foreach (var obj in _medikalKits)
+            {
+                obj.HealthRecovery -= subscriber.Healing;
             }
         }
     }

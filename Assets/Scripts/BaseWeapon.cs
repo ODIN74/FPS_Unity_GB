@@ -57,5 +57,7 @@ namespace FPS
         }
 
         public abstract void Recharge();
+
+        public abstract void BulletRecovery(int recoverableBullets);
     }
 }

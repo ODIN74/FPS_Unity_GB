@@ -10,22 +10,21 @@ namespace FPS
         [SerializeField]
         private int recoverableAmount = 10;
 
-        protected override void Awake()
+        public int RecoverableAmount
         {
-            base.Awake();
-            Player = GameObject.FindGameObjectWithTag("Player");
+            get
+            {
+                return recoverableAmount;
+            }
         }
 
         public override void PlayerActionStart()
         {
-            HealthRecovery(recoverableAmount);
             Destroy(transform.gameObject);
         }
 
         public override void PlayerActionStop()
         {
         }
-
-        public event UnityAction<int> HealthRecovery;
     }
 }

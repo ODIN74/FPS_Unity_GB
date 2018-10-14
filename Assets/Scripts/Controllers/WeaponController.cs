@@ -17,13 +17,11 @@ namespace FPS
 
             for (int i = 0; i < _weapons.Length; i++)
                 _weapons[i].IsVisible = i == 0;
-            CurrentWeapon = _weapons[0];
-                Main.Instance.AmmoCrateController.SubscribeEvent(CurrentWeapon);
+            CurrentWeapon = _weapons[0];                
         }
 
         public void ChangeWeapon(int i)
         {
-            Main.Instance.AmmoCrateController.UnsubscribeEvent(CurrentWeapon);
             _weapons[_currentWeapon].IsVisible = false;
             _currentWeapon += i;
             if (_currentWeapon >= _weapons.Length)
@@ -35,7 +33,6 @@ namespace FPS
                 _currentWeapon = _weapons.Length - 1;
             _weapons[_currentWeapon].IsVisible = true;
             CurrentWeapon = _weapons[_currentWeapon];
-            Main.Instance.AmmoCrateController.SubscribeEvent(CurrentWeapon);
         }
 
         public void Fire()
@@ -59,6 +56,12 @@ namespace FPS
         {
             if (_weapons[_currentWeapon] is SingleBarreledFirearms)
                 _weapons[_currentWeapon].Recharge();
+        }
+
+        public void RecoveryBullets (int recoverableBullets)
+        {
+            if (CurrentWeapon is SingleBarreledFirearms)
+                CurrentWeapon.BulletRecovery(recoverableBullets);
         }
     }
 }

@@ -31,11 +31,19 @@ namespace FPS
             {
                 if (obj.IsContact)
                 {
-                    obj.PlayerActionStart();
                     _objectInAction = obj;
-                    _objectInAction.onPlayerActionTriggerOn -= _view.Enable;
-                    _objectInAction.onPlayerActionTriggerOff -= _view.Disable;
+                    obj.PlayerActionStart();
                 }
+            }
+        }
+
+        public override void PlayerActionStop()
+        {
+            if (_objectInAction)
+            {
+                _objectInAction.PlayerActionStop();
+                _objectInAction.onPlayerActionTriggerOn -= _view.Enable;
+                _objectInAction.onPlayerActionTriggerOff -= _view.Disable;
             }
         }
     }

@@ -10,23 +10,18 @@ namespace FPS
         [SerializeField]
         private int recoverableBullets = 25;
 
-        protected override void Awake()
+        public int RecoverableBullets
         {
-            base.Awake();
-            Player = GameObject.FindGameObjectWithTag("Player");
-        }
-
-        public override void PlayerActionStart()
-        {
-            BulletsRecovery(recoverableBullets);
-            Destroy(transform.gameObject);
+            get
+            {
+                return recoverableBullets;
+            }
         }
 
         public override void PlayerActionStop()
         {
+            Destroy(transform.gameObject);
         }
-
-        public event UnityAction<int> BulletsRecovery;
     }
 }
 

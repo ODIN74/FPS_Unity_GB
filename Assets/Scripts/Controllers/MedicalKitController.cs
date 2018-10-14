@@ -29,27 +29,20 @@ namespace FPS
             {
                 if (obj.IsContact)
                 {
-                    obj.PlayerActionStart();
+                    PlayerModel.LocalPlayer.GetComponent<PlayerModel>().Healing(obj.RecoverableAmount);
                     _objectInAction = obj;
-                    _objectInAction.onPlayerActionTriggerOn -= _view.Enable;
-                    _objectInAction.onPlayerActionTriggerOff -= _view.Disable;
+                    obj.PlayerActionStart();
                 }
             }
         }
 
-        public void SubscribeEvent(PlayerModel subscriber)
+        public override void PlayerActionStop()
         {
-            foreach (var obj in _medikalKits)
+            if (_objectInAction)
             {
-                obj.HealthRecovery += subscriber.Healing;
-            }
-        }
-
-        public void UnsubscribeEvent(PlayerModel subscriber)
-        {
-            foreach (var obj in _medikalKits)
-            {
-                obj.HealthRecovery -= subscriber.Healing;
+                _objectInAction.PlayerActionStop();
+                _objectInAction.onPlayerActionTriggerOn -= _view.Enable;
+                _objectInAction.onPlayerActionTriggerOff -= _view.Disable;
             }
         }
     }

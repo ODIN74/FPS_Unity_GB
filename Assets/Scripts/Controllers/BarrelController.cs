@@ -42,8 +42,11 @@ namespace FPS
 
         private void OnDestroy()
         {
-            _objectInAction.onPlayerActionTriggerOn -= _view.Enable;
-            _objectInAction.onPlayerActionTriggerOff -= _view.Disable;
+            if(_objectInAction && _view)
+            {
+                _objectInAction.onPlayerActionTriggerOn -= _view.Enable;
+                _objectInAction.onPlayerActionTriggerOff -= _view.Disable;
+            }
         }
     }
 }

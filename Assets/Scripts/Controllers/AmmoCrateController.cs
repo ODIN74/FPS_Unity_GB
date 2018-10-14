@@ -29,28 +29,22 @@ namespace FPS
             {
                 if (obj.IsContact)
                 {
-                    obj.PlayerActionStart();
+                    Main.Instance.WeaponController.RecoveryBullets(obj.RecoverableBullets);
                     _objectInAction = obj;
-                    _objectInAction.onPlayerActionTriggerOn -= _view.Enable;
-                    _objectInAction.onPlayerActionTriggerOff -= _view.Disable;
+                    obj.PlayerActionStart();
                 }
             }
         }
 
-        public void SubscribeEvent(BaseWeapon subscriber)
+        public override void PlayerActionStop()
         {
-            foreach(var obj in _crates)
+            if (_objectInAction)
             {
-                obj.BulletsRecovery += subscriber.BulletRecovery;
-            }
-        }
-
-        public void UnsubscribeEvent(BaseWeapon subscriber)
-        {
-            foreach (var obj in _crates)
-            {
-                obj.BulletsRecovery -= subscriber.BulletRecovery;
-            }
+                _objectInAction.PlayerActionStop();
+                _objectInAction.onPlayerActionTriggerOn -= _view.Enable;
+                _objectInAction.onPlayerActionTriggerOff -= _view.Disable;
+            }  
+               
         }
     }
 }

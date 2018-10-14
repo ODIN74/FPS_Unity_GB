@@ -35,12 +35,6 @@ namespace FPS
             _currentHelth = _maxHealth;
         }
 
-        private void Start()
-        {
-            if (Main.Instance.MedicalKitController)
-                Main.Instance.MedicalKitController.SubscribeEvent(this);
-        }
-
         public void Damage(int damage)
         {
             if (_currentHelth <= 0)
@@ -49,8 +43,8 @@ namespace FPS
 
             if (_currentHelth <= 0)
             {
-                Main.Instance.MedicalKitController.UnsubscribeEvent(this);
-                OnPlayerDie.Invoke();
+                if (OnPlayerDie != null)
+                    OnPlayerDie.Invoke();
             }
 
         }

@@ -4,7 +4,13 @@ ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: HP1_Cube_Material
     400000: //RootNode
+    400002: HP1_Cube_Material
+    2100000: HP1_Cube_MaterialMat
+    2300000: HP1_Cube_Material
+    3300000: HP1_Cube_Material
+    4300000: HP1_Cube_Material
   externalObjects: {}
   materials:
     importMaterials: 1

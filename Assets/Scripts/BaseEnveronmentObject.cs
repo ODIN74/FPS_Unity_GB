@@ -7,8 +7,8 @@ namespace FPS
 {
     public abstract class BaseEnveronmentObject : BaseObjectScene
     {
-        [SerializeField]
-        protected GameObject Player;
+        //[SerializeField]
+        //protected GameObject Player;
 
         protected Collider _playerCollider;
 
@@ -28,18 +28,20 @@ namespace FPS
 
         protected virtual void OnCollisionEnter(Collision other) 
         {
-            if (other.gameObject.tag.Equals(Player.tag))
+            if (other.gameObject.tag.Equals(PlayerModel.LocalPlayer.tag))
             {
                 IsContact = true;
+                if(onPlayerActionTriggerOn != null)
                 onPlayerActionTriggerOn();
             }
         }
 
         protected virtual void OnCollisionExit(Collision other)
         {
-            if (other.gameObject.tag.Equals(Player.tag))
+            if (other.gameObject.tag.Equals(PlayerModel.LocalPlayer.tag))
             {
                 IsContact = false;
+                if (onPlayerActionTriggerOff != null)
                 onPlayerActionTriggerOff();
             }
         }
@@ -47,16 +49,25 @@ namespace FPS
         protected override void Awake()
         {
             base.Awake();
-            _playerCollider = Player.GetComponent<Collider>();
             _camera = Camera.main;
             IsContact = false;
+        }
+
+        protected void Start()
+        {
+            _playerCollider = PlayerModel.LocalPlayer.GetComponent<Collider>();
         }
 
         public event UIMessageForPlayer onPlayerActionTriggerOn;
 
         public event UIMessageForPlayer onPlayerActionTriggerOff;
 
-        public abstract void PlayerActionStart();
+        public virtual void PlayerActionStart()
+        {
+            if (onPlayerActionTriggerOff != null)
+                onPlayerActionTriggerOff.Invoke();
+        }
+
         public abstract void PlayerActionStop();
     }
 }

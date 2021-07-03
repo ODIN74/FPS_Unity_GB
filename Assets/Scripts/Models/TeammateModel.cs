@@ -11,7 +11,6 @@ namespace FPS
         private NavMeshAgent _agent;
         private ThirdPersonCharacter _teammate;
 
-        private Vector3 _currentPosition;
         private bool _followPlayer;
 
         [SerializeField]
@@ -23,7 +22,6 @@ namespace FPS
 
         private void Start()
         {
-            _currentPosition = transform.position;
             _agent = GetComponentInChildren<NavMeshAgent>();
             _teammate = GetComponent<ThirdPersonCharacter>();
 

@@ -6,7 +6,7 @@ namespace FPS
 {
     public class BarrelModel : BaseEnveronmentObject
     {
-        [SerializeField] private float force = 100.0f;
+        //[SerializeField] private float force = 100.0f;
 
         private bool _actionActive = false;
 

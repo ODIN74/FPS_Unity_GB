@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace FPS
 {
@@ -9,6 +11,15 @@ namespace FPS
         public static PlayerModel LocalPlayer { get; private set; }
 
         public BaseWeapon[] Weapons;
+
+        [SerializeField]
+        private int _maxHealth;
+
+        private int _currentHelth;
+
+        public int CurrentHelth { get { return _currentHelth; } }
+
+        public float CurrentHelthForView { get { return (_currentHelth / _maxHealth); } }
 
         protected override void Awake()
         {
@@ -20,6 +31,40 @@ namespace FPS
             base.Awake();
 
             Weapons = GetComponentsInChildren<BaseWeapon>(true);
+
+            _currentHelth = _maxHealth;
         }
+
+        private void Start()
+        {
+            if (Main.Instance.MedicalKitController)
+                Main.Instance.MedicalKitController.SubscribeEvent(this);
+        }
+
+        public void Damage(int damage)
+        {
+            if (_currentHelth <= 0)
+                return;
+            _currentHelth -= damage;
+
+            if (_currentHelth <= 0)
+            {
+                Main.Instance.MedicalKitController.UnsubscribeEvent(this);
+                OnPlayerDie.Invoke();
+            }
+
+        }
+
+        public void Healing(int recoverableAmount)
+        {
+            if (_currentHelth == _maxHealth)
+                return;
+            if ((_currentHelth + recoverableAmount) >= _maxHealth)
+                _currentHelth = _maxHealth;
+            else
+                _currentHelth += recoverableAmount;
+        }
+
+        public event UnityAction OnPlayerDie;
     }
 }

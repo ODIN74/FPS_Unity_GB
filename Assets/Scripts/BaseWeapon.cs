@@ -13,7 +13,6 @@ namespace FPS
         protected float _force;
         [SerializeField]
         protected float _reloadTime;
-        private float _reloadTimer;
 
         [SerializeField]
         protected float _timeout;
@@ -22,10 +21,15 @@ namespace FPS
         private Camera _mainCamera;
         protected Vector3 targetPoint;
 
+        protected Animator _anim;
+        protected ParticleSystem _particle;
+
         protected override void Awake()
         {
             base.Awake();
             _mainCamera = Camera.main;
+            _particle = GetComponentInChildren<ParticleSystem>();
+            _anim = GetComponent<Animator>();
         }
 
         public virtual void Fire()
@@ -35,6 +39,10 @@ namespace FPS
             RaycastHit hit;
             Physics.Raycast(ray, out hit);
             targetPoint = hit.point;
+            if (_particle != null)
+                _particle.Play();
+            if (_anim != null)
+                _anim.SetTrigger("Fire");
         }
 
         protected bool TryShoot()
@@ -42,11 +50,14 @@ namespace FPS
 
             if (Time.time - _lastShotTime < _timeout)
                 return false;
-
+            if (_anim != null && _anim.GetCurrentAnimatorStateInfo(0).IsName("Recharge"))
+                return false;
             _lastShotTime = Time.time;
             return true;
         }
 
-        public abstract void Reload();
+        public abstract void Recharge();
+
+        public abstract void BulletRecovery(int recoverableBullets);
     }
 }

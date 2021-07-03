@@ -55,9 +55,14 @@ namespace FPS
                 OnAlternativeFire(energy);
         }
 
-        public override void Reload()
+        public override void Recharge()
         {
-            //Реализуем в ДЗ
+            throw new NotImplementedException();
+        }
+
+        public override void BulletRecovery(int recoverableBullets)
+        {
+            throw new NotImplementedException();
         }
 
         IEnumerator MultiFire()

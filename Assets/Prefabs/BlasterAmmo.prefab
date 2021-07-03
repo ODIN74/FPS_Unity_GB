@@ -206,4 +206,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _poolID: Bullet1
-  _bulletsCount: 10
+  _bulletsCount: 100

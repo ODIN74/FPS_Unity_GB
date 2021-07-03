@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Wall
+  - Eyes
+  - mapCam
   layers:
   - Default
   - TransparentFX
@@ -16,11 +18,11 @@ TagManager:
   - 
   - PostProcessing
   - SurroundingSpace
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Enemy
+  - FirstFloor
+  - SecondFloore
+  - FirdFloor
+  - Roof
   - 
   - 
   - 
